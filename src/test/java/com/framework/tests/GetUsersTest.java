@@ -1,7 +1,7 @@
 package com.framework.tests;
 
 import com.framework.basetest.BaseTest;
-import com.framework.response.User;
+import com.framework.responsemodel.User;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.options.RequestOptions;
 import org.testng.Assert;

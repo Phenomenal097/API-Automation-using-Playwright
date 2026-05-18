@@ -1,4 +1,4 @@
-package com.framework.request;
+package com.framework.responsemodel;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,10 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
+    private long id;
     private String name;
     private String email;
     private String gender;
