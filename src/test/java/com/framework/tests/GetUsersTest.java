@@ -21,7 +21,7 @@ public class GetUsersTest extends BaseTest {
         //Request body
         com.framework.requestmodel.User requestUser = CreateUserPayload.createUser();
 
-        APIResponse apiPostResponse = apiRequestContext.post("https://gorest.co.in/public/v2/users",
+        APIResponse apiPostResponse = apiRequestContextThreadLocal.get().post("https://gorest.co.in/public/v2/users",
                 RequestOptions.create().setHeader("Content-Type", "application/json")
                         .setHeader("Authorization", "Bearer dfc49a493d3b5d3b458a2d14195499462b9f9c536ce7f123a70135d1aef45963")
                         .setHeader("Accept", "application/json")
@@ -36,7 +36,7 @@ public class GetUsersTest extends BaseTest {
         long userId = userPostResponse.getId();
 
         //Get all user details - GET API
-        APIResponse getUsersResponse = apiRequestContext.get("https://gorest.co.in/public/v2/users",
+        APIResponse getUsersResponse = apiRequestContextThreadLocal.get().get("https://gorest.co.in/public/v2/users",
                 RequestOptions.create().setHeader("Content-Type", "application/json")
                         .setHeader("Authorization", "Bearer dfc49a493d3b5d3b458a2d14195499462b9f9c536ce7f123a70135d1aef45963"));
 

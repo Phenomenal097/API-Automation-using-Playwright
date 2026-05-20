@@ -7,19 +7,20 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
-    protected Playwright playwright;
-    protected APIRequest apiRequest;
-    protected APIRequestContext apiRequestContext;
+    protected static final ThreadLocal<Playwright> playwrightThreadLocal = new ThreadLocal<>();
+    protected static final ThreadLocal<APIRequest> apiRequestThreadLocal = new ThreadLocal<>();
+    protected static final ThreadLocal<APIRequestContext> apiRequestContextThreadLocal = new ThreadLocal<>();
 
     @BeforeTest
     public void setup() {
-        playwright = Playwright.create();
-        apiRequest = playwright.request();
-        apiRequestContext = apiRequest.newContext();
+        playwrightThreadLocal.set(Playwright.create());
+        apiRequestThreadLocal.set(playwrightThreadLocal.get().request());
+        apiRequestContextThreadLocal.set(apiRequestThreadLocal.get().newContext());
     }
 
     @AfterTest
     public void teardown() {
-        playwright.close();
+        apiRequestContextThreadLocal.get().dispose();
+        playwrightThreadLocal.get().close();
     }
 }
